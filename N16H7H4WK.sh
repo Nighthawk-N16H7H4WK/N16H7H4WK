@@ -276,7 +276,7 @@ tunnel_menu() {
 
 	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select a port forwarding service : ${BLUE}"
 
-	elif [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
+	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
 		start_ngrok
 	else
 		echo -ne "\n${RED}[${WHITE}!${RED}]${RED} Error, Try Again..."
