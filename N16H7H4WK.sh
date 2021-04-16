@@ -58,12 +58,9 @@ kill_pid() {
 ## Banner
 banner() {
 	cat <<- EOF
-        ${BLUE}  ███╗░░██╗░░███╗░░░█████╗░██╗░░██╗███████╗██╗░░██╗░░██╗██╗░██╗░░░░░░░██╗██╗░░██╗
-        ${BLUE}  ████╗░██║░████║░░██╔═══╝░██║░░██║╚════██║██║░░██║░██╔╝██║░██║░░██╗░░██║██║░██╔╝
-        ${BLUE}  ██╔██╗██║██╔██║░░██████╗░███████║░░░░██╔╝███████║██╔╝░██║░╚██╗████╗██╔╝█████═╝░
-        ${BLUE}  ██║╚████║╚═╝██║░░██╔══██╗██╔══██║░░░██╔╝░██╔══██║███████║░░████╔═████║░██╔═██╗░
-        ${BLUE}  ██║░╚███║███████╗╚█████╔╝██║░░██║░░██╔╝░░██║░░██║╚════██║░░╚██╔╝░╚██╔╝░██║░╚██╗
-        ${BLUE}  ╚═╝░░╚══╝╚══════╝░╚════╝░╚═╝░░╚═╝░░╚═╝░░░╚═╝░░╚═╝░░░░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝░░╚═╝
+        ${BLUE}    ▒█▄░▒█ ▄█░ ▄▀▀▄ ▒█░▒█ ▀▀▀█ ▒█░▒█ ░█▀█░ ▒█░░▒█ ▒█░▄▀ 
+        ${BLUE}    ▒█▒█▒█ ░█░ █▄▄░ ▒█▀▀█ ░░█░ ▒█▀▀█ █▄▄█▄ ▒█▒█▒█ ▒█▀▄░ 
+        ${BLUE}    ▒█░░▀█ ▄█▄ ▀▄▄▀ ▒█░▒█ ░▐▌░ ▒█░▒█ ░░░█░ ▒█▄▀▄█ ▒█░▒█
 		${RED}[${RED}-${RED}]${RED} Made with love by NIGHTHAWK (N16H7H4WK)${RED}
 	EOF
 }
@@ -264,9 +261,10 @@ tunnel_menu() {
 	{ clear; banner_small; }
 	cat <<- EOF
 		${RED}[${WHITE}01${RED}]${ORANGE} Ngrok.io  ${RED}[${CYAN}Best${RED}]
+
 	EOF
 
-	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select a port forwarding service : ${BLUE}"
+	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select : ${BLUE}"
 
 	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
 		start_ngrok
@@ -279,9 +277,13 @@ tunnel_menu() {
 
 site_facebook() {
 	cat <<- EOF
+
 		${RED}[${WHITE}01${RED}]${ORANGE} Facebook Login Page
+
 		${RED}[${WHITE}02${RED}]${ORANGE} Voting Poll Login Page
+
 		${RED}[${WHITE}03${RED}]${ORANGE} Messenger Login Page
+
 	EOF
 
 	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
@@ -307,9 +309,13 @@ site_facebook() {
 
 site_instagram() {
 	cat <<- EOF
+
 		${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page
+
 		${RED}[${WHITE}02${RED}]${ORANGE} Auto Followers Login Page
+
 		${RED}[${WHITE}03${RED}]${ORANGE} Blue Badge Verify Login Page
+
 	EOF
 
 	read -p "\n${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
@@ -335,8 +341,11 @@ site_instagram() {
 
 site_gmail() {
 	cat <<- EOF
+
 		${RED}[${WHITE}01${RED}]${ORANGE} Gmail Login Page
+
 		${RED}[${WHITE}02${RED}]${ORANGE} Voting Poll
+    
 	EOF
 
 	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
@@ -363,11 +372,16 @@ main_menu() {
 	{ clear; banner; echo; }
 	cat <<- EOF
 		${RED}[${WHITE}::${RED}]${ORANGE} Select An Attack ${RED}[${WHITE}::${RED}]${ORANGE}
+
 		${RED}[${WHITE}01${RED}]${ORANGE} Facebook     ${RED}[${WHITE}02${RED}]${ORANGE} Instagram  
+
 ${RED}[${WHITE}03${RED}]${ORANGE} Google   
+
 		${RED}[${WHITE}9${RED}]${ORANGE} About         ${RED}[${WHITE}0${RED}]${RED} Exit
+
 	EOF
 	
+
 	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
 
 	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
