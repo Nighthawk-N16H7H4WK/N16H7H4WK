@@ -79,7 +79,7 @@ banner_small() {
 
 ## Dependencies
 dependencies() {
-	echo -e 
+	echo -e "\n${GREEN} Installing..."
 
     if [[ -d "/data/data/com.termux/files/home" ]]; then
         if [[ `command -v proot` ]]; then
@@ -91,7 +91,7 @@ dependencies() {
     fi
 
 	if [[ `command -v php` && `command -v wget` && `command -v curl` && `command -v unzip` ]]; then
-		echo -e 
+		echo -e "\n${GREEN} Please Wait...."
 	else
 		pkgs=(php curl wget unzip)
 		for pkg in "${pkgs[@]}"; do
