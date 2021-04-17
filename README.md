@@ -14,12 +14,3 @@ $ bash N16H7H4WKsh
 ```
 
 
-### Dependencies
-
-**`N16H7H4WK`** requires following programs to run properly - 
-- `php`
-- `wget`
-- `curl`
-- `git`
-
-
